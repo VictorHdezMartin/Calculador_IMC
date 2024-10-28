@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">IMC Calculator</string>
+    <string name="limpiarDatos">Clean data</string>
+    <string name="Altura">" Height (cms)"</string>
+    <string name="Peso">" Weight (kg)"</string>
+    <string name="CalcularIMC">Calculate IMC</string>
+</resources>

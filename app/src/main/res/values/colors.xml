@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="bajoPeso">#111457</color>
+    <color name="pesoNormal">#00CC70</color>
+    <color name="sobrePeso">#EFB303</color>
+    <color name="sobreObeso">#FF6800</color>
+    <color name="sobreExtremo">#FC1243</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="green">#A4FF3B</color>
+    <color name="fondo">#FEF7FF</color>
+</resources>

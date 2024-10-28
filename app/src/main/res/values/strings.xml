@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Calculadora IMC</string>
+    <string name="limpiarDatos">Limpiar datos</string>
+    <string name="Altura">" Altura (cms)"</string>
+    <string name="Peso">" Peso (kg)"</string>
+    <string name="CalcularIMC">Calcular IMC</string>
+</resources>
