@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var AlturaEditText: EditText
     lateinit var CalcularPesoBoton: Button
     lateinit var BotonClear: Button
-    lateinit var resultadoIMC: TextView
 
     lateinit var pesoBajo: TextView
     lateinit var pesoNormal: TextView
@@ -44,10 +43,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)                           // referencia a la ubicación de los componentes
 
         initViews()
+        cleanEtiquetas()
+        initEditText()
 
         enableCalculateButton()
         enableBotonClear()
-        initEditText()
 
         AlturaEditText.addTextChangedListener {
             enableCalculateButton()
@@ -80,46 +80,55 @@ class MainActivity : AppCompatActivity() {
         }
 
         BotonClear.setOnClickListener {
-            AlturaEditText.setText("")
-            PesoEditText.setText("")
-            resultadoIMC.setText("0.00")
-
             cleanEtiquetas()
             initEditText()
+          //  AlturaEditText.requestFocus()
         }
 
         CalcularPesoBoton.setOnClickListener {
             val resultado = PesoEditText.text.toString().toFloat() /
                     (AlturaEditText.text.toString().toFloat() / 100.0).pow(2)
 
-            cleanEtiquetas()
+            val IMC = String.format("%.2f", resultado)
 
-            resultadoIMC.text = String.format("%.2f", resultado)
+            cleanEtiquetas()
 
             when (resultado) {
                 in 0.00..18.50 -> {
-                    pesoBajo.text = resultadoIMC.text
-                    pesoBajo.setBackgroundColor(getColor(R.color.bajoPeso))
+                    with (pesoBajo) {
+                        text = IMC
+                        setBackgroundColor(getColor(R.color.bajoPeso))
+                    }
                 }
 
                 in 18.51..24.90 -> {
-                    pesoNormal.text = resultadoIMC.text
-                    pesoNormal.setBackgroundColor(getColor(R.color.pesoNormal))
+                    with (pesoNormal) {
+                        text = IMC
+                        setBackgroundColor(getColor(R.color.pesoNormal))
+                    }
                 }
 
                 in 24.91..29.90 -> {
-                    sobrePeso.text = resultadoIMC.text
-                    sobrePeso.setBackgroundColor(getColor(R.color.sobrePeso))
+                    with (sobrePeso) {
+                        text = IMC
+                        setTextColor(getColor(R.color.black))
+                        setBackgroundColor(getColor(R.color.sobrePeso))
+                    }
                 }
 
                 in 30.00..34.90 -> {
-                    pesoObeso.text = resultadoIMC.text
-                    pesoObeso.setBackgroundColor(getColor(R.color.sobreObeso))
+                    with (pesoObeso) {
+                        text = IMC
+                        setTextColor(getColor(R.color.black))
+                        setBackgroundColor(getColor(R.color.sobreObeso))
+                    }
                 }
-
                 else -> {
-                    pesoExtremo.text = resultadoIMC.text
-                    pesoExtremo.setBackgroundColor(getColor(R.color.sobreExtremo))
+                    with (pesoExtremo) {
+                        text = IMC
+                        setTextColor(getColor(R.color.black))
+                        setBackgroundColor(getColor(R.color.sobreExtremo))
+                    }
                 }
             }
         }
@@ -128,22 +137,26 @@ class MainActivity : AppCompatActivity() {
         with(seekBarAltura) {
             addOnChangeListener { slider, value, fromUser ->
                 var altura = value.toInt()
-                AlturaEditText.setText(altura.toString())
-
+                with (AlturaEditText) {
+                    setText(altura.toString())
+                    requestFocus()                          // damos foco al textedit de la altura
+                }
             }
         }
 
 // Slider PESO
         with(seekBarPeso) {
             addOnChangeListener { slider, value, fromUser ->
-                PesoEditText.setText(value.toString())
-
+                with (PesoEditText) {
+                    setText(value.toString())
+                    requestFocus()                          // damos foco al textedit del peso
+                }
             }
         }
 
 // botones de Altura
         btnOddAltura.setOnClickListener(){
-         seekBarAltura.value --
+            seekBarAltura.value --
         }
 
         btnAddAltura.setOnClickListener(){
@@ -161,22 +174,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initEntorno(texto: TextView, color: Int) {
-        texto.setText("")
-        texto.setBackgroundColor(color)
+        with (texto) {
+            setText("")
+            setBackgroundColor(color)
+        }
     }
-
-    private fun initEditText() {
-        AlturaEditText.setText("160")
-        PesoEditText.setText("60.0")
-    }
-
-   fun cleanEtiquetas(){
-       initEntorno(pesoBajo, getColor(R.color.white))
-       initEntorno(pesoNormal, getColor(R.color.white))
-       initEntorno(sobrePeso, getColor(R.color.white))
-       initEntorno(pesoObeso, getColor(R.color.white))
-       initEntorno(pesoExtremo, getColor(R.color.white))
-   }
 
     fun enableCalculateButton() {
         CalcularPesoBoton.isEnabled = (PesoEditText.text.toString() != "") &&
@@ -191,20 +193,40 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun cambioColor(componente: TextView) {
-        componente.setBackgroundColor(getColor(R.color.yellow))
+        with (componente) {
+            setTextColor(getColor(R.color.white))
+            setBackgroundColor(getColor(R.color.red))
+       }
+    }
+
+// --- FUNCIONES -----------------------------------------------------------------------------------
+
+    fun cleanEtiquetas(){
+        initEntorno(pesoBajo, getColor(R.color.fondo))
+        initEntorno(pesoNormal, getColor(R.color.fondo))
+        initEntorno(sobrePeso, getColor(R.color.fondo))
+        initEntorno(pesoObeso, getColor(R.color.fondo))
+        initEntorno(pesoExtremo, getColor(R.color.fondo))
+    }
+
+    fun initEditText() {
+        AlturaEditText.setText("160")
+        PesoEditText.setText("60.0")
     }
 
     fun initColor(componente: TextView) {
-        componente.setBackgroundColor(getColor(R.color.fondo))
+        with (componente) {
+            setTextColor(getColor(R.color.black))
+            setBackgroundColor(getColor(R.color.fondo))
+        }
     }
 
-// capturamos componente
+// capturamos componentes
     fun initViews() {
         PesoEditText = findViewById(R.id.textoPeso)
         AlturaEditText = findViewById(R.id.textoAltura)
         CalcularPesoBoton = findViewById(R.id.botonCalcularIMC)
         BotonClear = findViewById(R.id.botonClear)
-        resultadoIMC = findViewById<TextView>(R.id.resultadoIMC)
 
         pesoBajo = findViewById(R.id.pesoBajo)
         pesoNormal = findViewById(R.id.pesoNormal)

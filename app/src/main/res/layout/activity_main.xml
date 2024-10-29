@@ -99,21 +99,6 @@
             android:layout_weight="1"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/resultadoIMC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:padding="10dp"
-        android:text="0.00"/>
-
-     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"/>
-
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
@@ -131,6 +116,7 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/white"
+            android:background="@color/fondo"
             android:textSize="25sp"
             android:gravity="center"
             android:textStyle="bold"
@@ -140,7 +126,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text=""
-            android:textColor="@color/white"
             android:gravity="center"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -150,7 +135,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text=""
-            android:textColor="@color/black"
             android:textSize="25sp"
             android:gravity="center"
             android:textStyle="bold"
@@ -160,7 +144,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text=""
-            android:textColor="@color/white"
             android:textSize="25sp"
             android:gravity="center"
             android:textStyle="bold"
@@ -170,7 +153,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text=""
-            android:textColor="@color/white"
             android:textSize="25sp"
             android:gravity="center"
             android:textStyle="bold"
@@ -202,10 +184,13 @@
             android:layout_width="10dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
-            android:layout_weight="1"
             android:gravity="center"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true"
             android:text="-"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_weight="1"/>
 
         <com.google.android.material.slider.Slider
             android:id="@+id/seekBarAltura"
@@ -228,6 +213,9 @@
             android:layout_height="60dp"
             android:gravity="center"
             android:layout_gravity="center"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true"
             android:text="+"
             android:textSize="30dp"
             android:layout_weight="1"/>
@@ -250,10 +238,13 @@
             android:layout_width="10dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
-            android:layout_weight="1"
             android:gravity="center"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true"
             android:text="-"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_weight="1"/>
 
         <com.google.android.material.slider.Slider
             android:id="@+id/seekBarPeso"
@@ -276,6 +267,9 @@
             android:layout_height="60dp"
             android:gravity="center"
             android:layout_gravity="center"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true"
             android:text="+"
             android:textSize="30dp"
             android:layout_weight="1"/>
