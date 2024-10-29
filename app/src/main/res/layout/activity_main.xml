@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/Altura"
+            android:focusable="true"
             android:textSize="15sp"/>
 
         <TextView
@@ -37,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/Peso"
+            android:focusable="true"
             android:textSize="15sp"/>
     </LinearLayout>
 
@@ -195,36 +197,39 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/oddAltura"
+        <Button
+            android:id="@+id/btnOddAltura"
+            android:layout_width="10dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-"
+            android:textSize="30dp" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/seekBarAltura"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:progress="1"
+            android:value="160"
+            android:valueFrom="1"
+            android:valueTo="300"
+            android:stepSize="1"
+            app:labelBehavior="visible"
+            android:layout_weight="5"/>
+
+        <Button
+            android:id="@+id/btnAddAltura"
+            android:layout_width="10dp"
+            android:layout_height="60dp"
             android:gravity="center"
-            android:textStyle="bold"
-            android:layout_weight="1"/>
-
-    <com.google.android.material.slider.Slider
-        android:id="@+id/seekBarAltura"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:progress="1"
-        android:value="160"
-        android:valueFrom="1"
-        android:valueTo="300"
-        android:stepSize="1"
-        app:labelBehavior="visible"
-        android:layout_weight="5"/>
-
-        <TextView
-            android:id="@+id/addAltura"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="+"
+            android:textSize="30dp"
             android:layout_weight="1"/>
     </LinearLayout>
 
@@ -240,14 +245,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/oddPeso"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
+        <Button
+            android:id="@+id/btnOddPeso"
+            android:layout_width="10dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="center"
-            android:textStyle="bold"
-            android:layout_weight="1"/>
+            android:text="-"
+            android:textSize="30dp" />
 
         <com.google.android.material.slider.Slider
             android:id="@+id/seekBarPeso"
@@ -264,12 +270,14 @@
             app:labelBehavior="visible"
             android:layout_weight="5"/>
 
-        <TextView
-            android:id="@+id/addPeso"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
+        <Button
+            android:id="@+id/btnAddPeso"
+            android:layout_width="10dp"
+            android:layout_height="60dp"
             android:gravity="center"
+            android:layout_gravity="center"
+            android:text="+"
+            android:textSize="30dp"
             android:layout_weight="1"/>
     </LinearLayout>
 

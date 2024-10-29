@@ -31,6 +31,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var seekBarAltura: Slider
     lateinit var seekBarPeso: Slider
 
+    lateinit var btnOddAltura: Button
+    lateinit var btnAddAltura: Button
+    lateinit var btnOddPeso: Button
+    lateinit var btnAddPeso: Button
+
 // -------------------------------------------------------------------------------------------------
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         enableCalculateButton()
         enableBotonClear()
+        initEditText()
 
         AlturaEditText.addTextChangedListener {
             enableCalculateButton()
@@ -78,17 +84,15 @@ class MainActivity : AppCompatActivity() {
             PesoEditText.setText("")
             resultadoIMC.setText("0.00")
 
-            initEntorno(pesoBajo, getColor(R.color.white))
-            initEntorno(pesoNormal, getColor(R.color.white))
-            initEntorno(sobrePeso, getColor(R.color.white))
-            initEntorno(pesoObeso, getColor(R.color.white))
-            initEntorno(pesoExtremo, getColor(R.color.white))
+            cleanEtiquetas()
             initEditText()
         }
 
         CalcularPesoBoton.setOnClickListener {
             val resultado = PesoEditText.text.toString().toFloat() /
                     (AlturaEditText.text.toString().toFloat() / 100.0).pow(2)
+
+            cleanEtiquetas()
 
             resultadoIMC.text = String.format("%.2f", resultado)
 
@@ -123,7 +127,9 @@ class MainActivity : AppCompatActivity() {
 // Slider ALTURA
         with(seekBarAltura) {
             addOnChangeListener { slider, value, fromUser ->
-                AlturaEditText.setText(value.toString())
+                var altura = value.toInt()
+                AlturaEditText.setText(altura.toString())
+
             }
         }
 
@@ -131,7 +137,26 @@ class MainActivity : AppCompatActivity() {
         with(seekBarPeso) {
             addOnChangeListener { slider, value, fromUser ->
                 PesoEditText.setText(value.toString())
+
             }
+        }
+
+// botones de Altura
+        btnOddAltura.setOnClickListener(){
+         seekBarAltura.value --
+        }
+
+        btnAddAltura.setOnClickListener(){
+            seekBarAltura.value ++
+        }
+
+// botones de Peso
+        btnOddPeso.setOnClickListener(){
+            seekBarPeso.value = (seekBarPeso.value - 0.5).toFloat()
+        }
+
+        btnAddPeso.setOnClickListener(){
+            seekBarPeso.value =  (seekBarPeso.value + 0.5).toFloat()
         }
     }
 
@@ -142,8 +167,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun initEditText() {
         AlturaEditText.setText("160")
-        PesoEditText.setText("60")
+        PesoEditText.setText("60.0")
     }
+
+   fun cleanEtiquetas(){
+       initEntorno(pesoBajo, getColor(R.color.white))
+       initEntorno(pesoNormal, getColor(R.color.white))
+       initEntorno(sobrePeso, getColor(R.color.white))
+       initEntorno(pesoObeso, getColor(R.color.white))
+       initEntorno(pesoExtremo, getColor(R.color.white))
+   }
 
     fun enableCalculateButton() {
         CalcularPesoBoton.isEnabled = (PesoEditText.text.toString() != "") &&
@@ -174,15 +207,20 @@ class MainActivity : AppCompatActivity() {
         resultadoIMC = findViewById<TextView>(R.id.resultadoIMC)
 
         pesoBajo = findViewById(R.id.pesoBajo)
-        pesoNormal = findViewById(R.id.pesoNormal)                          // capturamos componente
-        sobrePeso = findViewById(R.id.sobrePeso)                           // capturamos componente
-        pesoObeso = findViewById(R.id.pesoObeso)                           // capturamos componente
-        pesoExtremo = findViewById(R.id.pesoExtremo)                         // capturamos componente
+        pesoNormal = findViewById(R.id.pesoNormal)
+        sobrePeso = findViewById(R.id.sobrePeso)
+        pesoObeso = findViewById(R.id.pesoObeso)
+        pesoExtremo = findViewById(R.id.pesoExtremo)
 
-        stringAltura = findViewById(R.id.stringAltura)                        // capturamos componente
-        stringPeso = findViewById(R.id.stringPeso)                          // capturamos componente
+        stringAltura = findViewById(R.id.stringAltura)
+        stringPeso = findViewById(R.id.stringPeso)
 
-        seekBarAltura = findViewById(R.id.seekBarAltura)           // capturamos componente
-        seekBarPeso = findViewById(R.id.seekBarPeso)               // capturamos componente
+        seekBarAltura = findViewById(R.id.seekBarAltura)
+        seekBarPeso = findViewById(R.id.seekBarPeso)
+
+        btnOddAltura = findViewById(R.id.btnOddAltura)
+        btnAddAltura = findViewById(R.id.btnAddAltura)
+        btnOddPeso = findViewById(R.id.btnOddPeso)
+        btnAddPeso = findViewById(R.id.btnAddPeso)
     }
 }
