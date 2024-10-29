@@ -1,5 +1,6 @@
 package com.example.calculadoraimc
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -77,20 +78,12 @@ class MainActivity : AppCompatActivity() {
             PesoEditText.setText("")
             resultadoIMC.setText("0.00")
 
-            pesoBajo.setText("")
-            pesoBajo.setBackgroundColor(getColor(R.color.white))
-
-            pesoNormal.setText("")
-            pesoNormal.setBackgroundColor(getColor(R.color.white))
-
-            sobrePeso.setText("")
-            sobrePeso.setBackgroundColor(getColor(R.color.white))
-
-            pesoObeso.setText("")
-            pesoObeso.setBackgroundColor(getColor(R.color.white))
-
-            pesoExtremo.setText("")
-            pesoExtremo.setBackgroundColor(getColor(R.color.white))
+            initEntorno(pesoBajo, getColor(R.color.white))
+            initEntorno(pesoNormal, getColor(R.color.white))
+            initEntorno(sobrePeso, getColor(R.color.white))
+            initEntorno(pesoObeso, getColor(R.color.white))
+            initEntorno(pesoExtremo, getColor(R.color.white))
+            initEditText()
         }
 
         CalcularPesoBoton.setOnClickListener {
@@ -142,11 +135,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun initEntorno(texto: TextView, color: Int) {
+        texto.setText("")
+        texto.setBackgroundColor(color)
+    }
+
+    private fun initEditText() {
+        AlturaEditText.setText("160")
+        PesoEditText.setText("60")
+    }
+
     fun enableCalculateButton() {
         CalcularPesoBoton.isEnabled = (PesoEditText.text.toString() != "") &&
                                       (AlturaEditText.text.toString() != "") &&
                                       (PesoEditText.text.toString().toFloat() > 0.0) &&
-                                      (AlturaEditText.text.toString().toFloat() > 0.0)
+                                      (AlturaEditText.text.toString().toFloat() > 0)
     }
 
     fun enableBotonClear() {
@@ -162,33 +165,22 @@ class MainActivity : AppCompatActivity() {
         componente.setBackgroundColor(getColor(R.color.fondo))
     }
 
+// capturamos componente
     fun initViews() {
-        PesoEditText =
-            findViewById(R.id.textoPeso)                            // capturamos componente
-        AlturaEditText =
-            findViewById(R.id.textoAltura)                         // capturamos componente
-        CalcularPesoBoton =
-            findViewById(R.id.botonCalcularIMC)                    // capturamos componente
-        BotonClear =
-            findViewById(R.id.botonClear)                          // capturamos componente
-        resultadoIMC =
-            findViewById<TextView>(R.id.resultadoIMC)              // capturamos componente
+        PesoEditText = findViewById(R.id.textoPeso)
+        AlturaEditText = findViewById(R.id.textoAltura)
+        CalcularPesoBoton = findViewById(R.id.botonCalcularIMC)
+        BotonClear = findViewById(R.id.botonClear)
+        resultadoIMC = findViewById<TextView>(R.id.resultadoIMC)
 
-        pesoBajo =
-            findViewById(R.id.pesoBajo)                            // capturamos componente
-        pesoNormal =
-            findViewById(R.id.pesoNormal)                          // capturamos componente
-        sobrePeso =
-            findViewById(R.id.sobrePeso)                           // capturamos componente
-        pesoObeso =
-            findViewById(R.id.pesoObeso)                           // capturamos componente
-        pesoExtremo =
-            findViewById(R.id.pesoExtremo)                         // capturamos componente
+        pesoBajo = findViewById(R.id.pesoBajo)
+        pesoNormal = findViewById(R.id.pesoNormal)                          // capturamos componente
+        sobrePeso = findViewById(R.id.sobrePeso)                           // capturamos componente
+        pesoObeso = findViewById(R.id.pesoObeso)                           // capturamos componente
+        pesoExtremo = findViewById(R.id.pesoExtremo)                         // capturamos componente
 
-        stringAltura =
-            findViewById(R.id.stringAltura)                        // capturamos componente
-        stringPeso =
-            findViewById(R.id.stringPeso)                          // capturamos componente
+        stringAltura = findViewById(R.id.stringAltura)                        // capturamos componente
+        stringPeso = findViewById(R.id.stringPeso)                          // capturamos componente
 
         seekBarAltura = findViewById(R.id.seekBarAltura)           // capturamos componente
         seekBarPeso = findViewById(R.id.seekBarPeso)               // capturamos componente

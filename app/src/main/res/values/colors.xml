@@ -9,5 +9,6 @@
     <color name="sobreExtremo">#FC1243</color>
     <color name="yellow">#FFEB3B</color>
     <color name="green">#A4FF3B</color>
-    <color name="fondo">#FEF7FF</color>
+    <color name="fondo">#FFF7F8</color>
+    <color name="red">#FC0221</color>
 </resources>

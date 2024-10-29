@@ -12,7 +12,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="10sp"/>
+        android:text=" Calculadora Masa Corporal (IMC)"
+        android:layout_gravity="center_vertical"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:background="@color/yellow"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -186,22 +190,43 @@
         android:text="@string/Altura"
         android:textSize="15sp"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/oddAltura"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
     <com.google.android.material.slider.Slider
         android:id="@+id/seekBarAltura"
-
         style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
 
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
-
         android:progress="1"
         android:value="160"
         android:valueFrom="1"
         android:valueTo="300"
         android:stepSize="1"
-        app:labelBehavior="visible" />
+        app:labelBehavior="visible"
+        android:layout_weight="5"/>
+
+        <TextView
+            android:id="@+id/addAltura"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/stringSeekBarPeso"
@@ -210,21 +235,42 @@
         android:text="@string/Peso"
         android:textSize="15sp"/>
 
-    <com.google.android.material.slider.Slider
-        android:id="@+id/seekBarPeso"
-
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
+        <TextView
+            android:id="@+id/oddPeso"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
 
-        android:progress="1"
-        android:value="60"
-        android:valueFrom="1"
-        android:valueTo="300"
-        android:stepSize="0.5"
-        app:labelBehavior="visible" />
+        <com.google.android.material.slider.Slider
+            android:id="@+id/seekBarPeso"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:progress="1"
+            android:value="60"
+            android:valueFrom="1"
+            android:valueTo="300"
+            android:stepSize="0.5"
+            app:labelBehavior="visible"
+            android:layout_weight="5"/>
+
+        <TextView
+            android:id="@+id/addPeso"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
 </LinearLayout>
